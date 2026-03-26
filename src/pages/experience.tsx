@@ -1,24 +1,12 @@
 import { lazy, Suspense } from "react"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { Badge } from "@/components/ui/badge"
 import { Nav } from "@/components/nav"
+import { ExperienceImageCard } from "@/components/experience-image-card"
+import { experienceDetails } from "@/data/experience-detail"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
-
-const experiences = [
-  {
-    role: "Software Engineer",
-    org: "Cirkles.ai",
-    tags: ["Full-Stack", "AI"],
-  },
-  {
-    role: "Data Scientist",
-    org: "Thales",
-    tags: ["ML", "Defense"],
-  },
-]
 
 export default function ExperiencePage() {
   return (
@@ -46,44 +34,70 @@ export default function ExperiencePage() {
 
       <div className="pointer-events-none fixed inset-0 z-[5] bg-background/25" />
 
-      <div className="relative z-10 mx-auto max-w-2xl px-6 py-24 pb-32">
-        <header className="mb-16">
+      <div className="relative z-10 mx-auto max-w-3xl px-6 py-24 pb-32">
+        <header className="mb-16 border-b border-border pb-10">
           <h1 className="text-3xl font-bold tracking-tight text-foreground">
             Nael Ghoundale
             <span className="cursor-blink ml-1 text-foreground/30">█</span>
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">Experience showcase</p>
+          <p className="mt-2 text-sm text-muted-foreground">Experience</p>
         </header>
 
-        <Separator className="mb-16" />
+        <div className="flex flex-col gap-24">
+          {experienceDetails.map((exp, index) => (
+            <article
+              key={exp.slug}
+              id={exp.slug}
+              className="scroll-mt-28"
+            >
+              <header className="mb-6">
+                <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                  {exp.title}
+                  <span className="text-muted-foreground"> @ {exp.org}</span>
+                </h2>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  <span>{exp.location}</span>
+                  <span className="mx-2 text-border">|</span>
+                  <span className="font-mono text-xs tracking-wide">{exp.duration}</span>
+                </p>
+              </header>
 
-        <section id="experience" className="mb-16">
-          <SectionTitle>Experience</SectionTitle>
-          <div className="grid gap-4">
-            {experiences.map((exp) => (
-              <Card key={exp.org}>
-                <CardHeader>
-                  <CardTitle>{exp.role}</CardTitle>
-                  <CardDescription>@ {exp.org}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex gap-2">
-                    {exp.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="rounded-none text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+              <div className="mb-6 flex flex-wrap gap-2">
+                {exp.tags.map((tag) => (
+                  <Badge key={tag} variant="outline" className="rounded-none text-xs">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
 
-        <Separator className="mb-16" />
+              <p className="mb-10 max-w-prose text-sm leading-relaxed text-muted-foreground">
+                {exp.description}
+              </p>
+
+              <div>
+                <h3 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/45">
+                  <span className="text-foreground/25">{">"}</span> Gallery
+                </h3>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {exp.gallery.map((item) => (
+                    <ExperienceImageCard key={item.id} caption={item.caption} />
+                  ))}
+                </div>
+              </div>
+
+              {index < experienceDetails.length - 1 ? (
+                <Separator className="mt-16 border-border/80" />
+              ) : null}
+            </article>
+          ))}
+        </div>
+
+        <Separator className="my-16" />
 
         <section id="contact" className="mb-16">
-          <SectionTitle>Contact</SectionTitle>
+          <h3 className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/45">
+            <span className="text-foreground/25">{">"}</span> Contact
+          </h3>
           <div className="flex flex-wrap gap-3">
             <Button variant="outline" className="rounded-none" render={<a href="mailto:nael@example.com" />}>
               Email
@@ -114,12 +128,3 @@ export default function ExperiencePage() {
     </div>
   )
 }
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">
-      <span className="text-foreground/25">{">"}</span> {children}
-    </h2>
-  )
-}
-

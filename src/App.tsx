@@ -4,21 +4,9 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Nav } from "@/components/nav"
+import { experienceDetails } from "@/data/experience-detail"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
-
-const experiences = [
-  {
-    role: "Software Engineer",
-    org: "Cirkles.ai",
-    tags: ["Full-Stack", "AI"],
-  },
-  {
-    role: "Data Scientist",
-    org: "Thales",
-    tags: ["ML", "Defense"],
-  },
-]
 
 const projects = [
   {
@@ -36,7 +24,6 @@ const projects = [
 ]
 
 function App() {
-  const experienceHref = `${import.meta.env.BASE_URL}experience/`
   const projectsHref = `${import.meta.env.BASE_URL}projects/`
 
   return (
@@ -95,15 +82,15 @@ function App() {
         <section id="experience" className="mb-16">
           <SectionTitle>Experience</SectionTitle>
           <div className="grid gap-4">
-            {experiences.map((exp) => (
+            {experienceDetails.map((exp) => (
               <a
-                key={exp.org}
-                href={experienceHref}
+                key={exp.slug}
+                href={`${import.meta.env.BASE_URL}experience/#${exp.slug}`}
                 className="block no-underline text-inherit"
               >
                 <Card className="cursor-pointer">
                   <CardHeader>
-                    <CardTitle>{exp.role}</CardTitle>
+                    <CardTitle>{exp.title}</CardTitle>
                     <CardDescription>@ {exp.org}</CardDescription>
                   </CardHeader>
                   <CardContent>
