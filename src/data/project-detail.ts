@@ -20,53 +20,44 @@ export type ProjectDetail = {
 export const projectDetails: ProjectDetail[] = [
   {
     slug: "fluid-diffusion",
-    title: "3D Fluid Flow Diffusion Models",
-    subtitle: "Generative modelling for turbulent flow fields",
-    year: "2025",
-    venue: "Research · Stanford",
-    tags: ["Diffusion", "CFD", "PyTorch"],
+    title: "3D Fluid Flow Reconstruction",
+    subtitle: "Reconstructing 3D turbulent velocity fields from 2D slices",
+    year: "2026",
+    venue: "Stanford University",
+    tags: ["DDPM", "CFD", "PyTorch", "3D U-Net"],
     abstract:
-      "We explore score-based diffusion in three dimensions to synthesize and denoise volumetric flow fields, " +
-      "bridging turbulence statistics with learned priors. The goal is faithful samples that respect physics " +
-      "constraints while remaining tractable at scale.",
+      "We want to reconstruct 3D flow fields from sparse 2D planar velocity data[cite: 779]. We use a Denoising Diffusion Probabilistic Model (DDPM) to predict the missing flow information[cite: 780].",
     problem:
-      "High-fidelity CFD is expensive; naive neural surrogates often violate incompressibility or decay spectra. " +
-      "We need generative models that respect coarse physical structure without hand-engineering every constraint.",
+      "In fluid mechanics, getting full volumetric measurements is experimentally challenging and expensive[cite: 787]. Usually, techniques like PIV only offer precise data at specific planar cross-sections[cite: 788]. We need a way to infer 3D flow structure from these sparse planar measurements[cite: 790].",
     approach:
-      "A voxel-space diffusion model with noise schedules tuned for multi-scale structure, trained with physics-aware " +
-      "losses and data from simulations. Iterative refinement focuses energy where the spectrum is hardest to match.",
+      "We used Direct Numerical Simulation data from the Johns Hopkins Turbulence Database[cite: 782, 840]. We simulated incomplete observations by creating binary masks that randomly zero out a percentage of the cross-sectional slices[cite: 902]. Then, we trained a 3D U-Net denoising model to reverse the diffusion process and recover the original field[cite: 917, 926].",
     outcome:
-      "Prototype sampler that matches second-order statistics on held-out Reynolds numbers; ablations isolate the " +
-      "value of spectral losses vs. plain L2. Code and figures are placeholders here—swap for your real results.",
+      "The DDPM outperformed both the 3D CNN and linear interpolation baselines[cite: 1010]. It successfully captured long-range spatial dependencies and global flow patterns without relying on hard-coded physics[cite: 1012, 1024].",
     gallery: [
-      { id: "fd1", caption: "Field sample" },
-      { id: "fd2", caption: "Spectrum match" },
-      { id: "fd3", caption: "Ablations" },
+      { id: "fd1", caption: "Velocity field slice" },
+      { id: "fd2", caption: "Ground truth vs prediction" },
+      { id: "fd3", caption: "Error distribution" },
     ],
   },
   {
-    slug: "generative-pipelines",
-    title: "Generative Pipelines",
-    subtitle: "Scientific data — diffusion & autoregressive stacks",
-    year: "2024",
-    venue: "Research",
-    tags: ["Generative AI", "Autoregressive", "Research"],
+    slug: "medical-image-synthesis",
+    title: "Medical Image Synthesis (MRI to CT)",
+    subtitle: "Generating synthetic CT scans for radiotherapy using PFGM++",
+    year: "2026",
+    venue: "Stanford University",
+    tags: ["Generative AI", "PFGM++", "Medical Imaging", "PyTorch"],
     abstract:
-      "End-to-end pipelines for scientific data: from raw measurements or simulations to latent space, generation, " +
-      "and evaluation. We compare diffusion and autoregressive heads under a shared tokenizer and reporting harness.",
+      "This project focuses on synthesizing Computed Tomography (CT) images from Magnetic Resonance Imaging (MRI) data[cite: 274]. The goal is to facilitate an MR-only workflow to reduce patient radiation exposure during radiotherapy planning[cite: 274].",
     problem:
-      "Lab workflows need reproducible pipelines, not one-off notebooks. Models must plug into evaluation, versioning, " +
-      "and downstream tasks without rewrites every iteration.",
+      "CT scans expose patients to severe radiation, and using both CT and MRI increases operation costs[cite: 293]. However, generating synthetic CTs is hard because MRI and CT encode different physical properties[cite: 297].",
     approach:
-      "Modular stages: preprocessing → tokenization or VAE → generative backbone → task metrics. Shared config and " +
-      "logging so experiments stay comparable across model families.",
+      "We built a Poisson flow generative model (PFGM++) based on a U-Net architecture that incorporates residual SwinFIR Transformer blocks[cite: 279]. The network processes a noisy CT slice and a conditioning MR slice to output a synthetic CT scan[cite: 383].",
     outcome:
-      "A reference pipeline layout you can adapt: swap in your datasets, swap in your checkpoints. Placeholder panels " +
-      "below stand in for figures and tables.",
+      "Our SwinFIR-PFGM model achieved a Peak Signal-to-Noise Ratio (PSNR) of 20.68 and a Mean Absolute Error of 0.11[cite: 280]. It surpassed the 2D U-Net baseline, creating sharper soft tissues that align better with the ground truth[cite: 280, 412].",
     gallery: [
-      { id: "gp1", caption: "Pipeline" },
-      { id: "gp2", caption: "Metrics" },
-      { id: "gp3", caption: "Samples" },
+      { id: "gp1", caption: "MRI Input" },
+      { id: "gp2", caption: "Synthetic CT Output" },
+      { id: "gp3", caption: "Ground Truth CT" },
     ],
   },
   {
@@ -81,7 +72,7 @@ export const projectDetails: ProjectDetail[] = [
     problem:
       "If agents simply optimize for their raw, immediate environmental rewards, they almost inevitably fall into resources depletion[cite: 18]. Standard algorithms like Q-learning or standard Policy Gradients often converge to aggressive, mutually destructive policies[cite: 30].",
     approach:
-      "We trained Independent Proximal Policy Optimization (IPPO) agents within the DeepMind Melting Pot suite[cite: 8, 94]. We mathematically modify the rewards to reflect different social ideologies before they are passed to the learning algorithm[cite: 44, 45]. We also tested dynamic curriculum schedules[cite: 57].",
+      "We trained Independent Proximal Policy Optimization (IPPO) agents within the DeepMind Melting Pot suite[cite: 8]. We mathematically modify the rewards to reflect different social ideologies before they are passed to the learning algorithm[cite: 44, 45]. We also tested dynamic curriculum schedules[cite: 57, 59].",
     outcome:
       "Our findings demonstrate that a balanced cooperative ideology yields the most sustainable harvesting and highest collective reward[cite: 9]. However, dynamically shifting this ideology during training introduces optimization instability that ultimately underperforms when compared to a static cooperative baseline[cite: 9].",
     gallery: [
