@@ -1,10 +1,10 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import "./index.css"
-import ExperiencePage from "@/pages/experience"
+import ExperienceSinglePage from "@/pages/experience-single"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ExperiencePage />
+    <ExperienceSinglePage slug="thales" />
   </StrictMode>,
 )

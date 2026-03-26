@@ -85,7 +85,7 @@ function App() {
             {experienceDetails.map((exp) => (
               <a
                 key={exp.slug}
-                href={`${import.meta.env.BASE_URL}experience/#${exp.slug}`}
+                href={`${import.meta.env.BASE_URL}experience/${exp.slug}/`}
                 className="block no-underline text-inherit"
               >
                 <Card className="cursor-pointer">

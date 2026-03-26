@@ -51,3 +51,7 @@ export const experienceDetails: ExperienceDetail[] = [
     ],
   },
 ]
+
+export function getExperienceBySlug(slug: string): ExperienceDetail | undefined {
+  return experienceDetails.find((e) => e.slug === slug)
+}
