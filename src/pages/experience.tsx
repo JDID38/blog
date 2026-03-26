@@ -1,0 +1,125 @@
+import { lazy, Suspense } from "react"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { Nav } from "@/components/nav"
+
+const PixelBlast = lazy(() => import("@/components/pixel-blast"))
+
+const experiences = [
+  {
+    role: "Software Engineer",
+    org: "Cirkles.ai",
+    tags: ["Full-Stack", "AI"],
+  },
+  {
+    role: "Data Scientist",
+    org: "Thales",
+    tags: ["ML", "Defense"],
+  },
+]
+
+export default function ExperiencePage() {
+  return (
+    <div className="relative min-h-screen">
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-20">
+        <Suspense fallback={null}>
+          <PixelBlast
+            variant="square"
+            pixelSize={4}
+            color="#e6e0d5"
+            patternScale={2}
+            patternDensity={1}
+            pixelSizeJitter={0}
+            enableRipples
+            rippleSpeed={0.4}
+            rippleThickness={0.12}
+            rippleIntensityScale={1.2}
+            liquid={false}
+            speed={0.5}
+            edgeFade={0.18}
+            transparent
+          />
+        </Suspense>
+      </div>
+
+      <div className="pointer-events-none fixed inset-0 z-[5] bg-background/55" />
+
+      <div className="relative z-10 mx-auto max-w-2xl px-6 py-24 pb-32">
+        <header className="mb-16">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            Nael Ghoundale
+            <span className="cursor-blink ml-1 text-foreground/30">█</span>
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">Experience showcase</p>
+        </header>
+
+        <Separator className="mb-16" />
+
+        <section id="experience" className="mb-16">
+          <SectionTitle>Experience</SectionTitle>
+          <div className="grid gap-4">
+            {experiences.map((exp) => (
+              <Card key={exp.org}>
+                <CardHeader>
+                  <CardTitle>{exp.role}</CardTitle>
+                  <CardDescription>@ {exp.org}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex gap-2">
+                    {exp.tags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="rounded-none text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="mb-16" />
+
+        <section id="contact" className="mb-16">
+          <SectionTitle>Contact</SectionTitle>
+          <div className="flex flex-wrap gap-3">
+            <Button variant="outline" className="rounded-none" render={<a href="mailto:nael@example.com" />}>
+              Email
+            </Button>
+            <Button
+              variant="outline"
+              className="rounded-none"
+              render={<a href="https://github.com/" target="_blank" rel="noopener noreferrer" />}
+            >
+              GitHub
+            </Button>
+            <Button
+              variant="outline"
+              className="rounded-none"
+              render={<a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" />}
+            >
+              LinkedIn
+            </Button>
+          </div>
+        </section>
+
+        <footer className="border-t border-border pt-8 text-xs text-muted-foreground">
+          <p>&copy; 2026 Nael Ghoundale</p>
+        </footer>
+      </div>
+
+      <Nav />
+    </div>
+  )
+}
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">
+      <span className="text-foreground/25">{">"}</span> {children}
+    </h2>
+  )
+}
+

@@ -7,19 +7,6 @@ import { Nav } from "@/components/nav"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
-const experiences = [
-  {
-    role: "Software Engineer",
-    org: "Cirkles.ai",
-    tags: ["Full-Stack", "AI"],
-  },
-  {
-    role: "Data Scientist",
-    org: "Thales",
-    tags: ["ML", "Defense"],
-  },
-]
-
 const projects = [
   {
     title: "3D Fluid Flow Diffusion Models",
@@ -35,13 +22,9 @@ const projects = [
   },
 ]
 
-function App() {
-  const experienceHref = `${import.meta.env.BASE_URL}experience/`
-  const projectsHref = `${import.meta.env.BASE_URL}projects/`
-
+export default function ProjectsPage() {
   return (
     <div className="relative min-h-screen">
-      {/* PixelBlast background */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-20">
         <Suspense fallback={null}>
           <PixelBlast
@@ -63,107 +46,48 @@ function App() {
         </Suspense>
       </div>
 
-      {/* Dimming overlay to keep foreground text readable */} 
       <div className="pointer-events-none fixed inset-0 z-[5] bg-background/55" />
 
       <div className="relative z-10 mx-auto max-w-2xl px-6 py-24 pb-32">
-
-        {/* Header */}
-        <header className="mb-20">
+        <header className="mb-16">
           <h1 className="text-3xl font-bold tracking-tight text-foreground">
             Nael Ghoundale
             <span className="cursor-blink ml-1 text-foreground/30">█</span>
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Mechanical Engineering &middot; Artificial Intelligence &middot; Stanford
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">Projects showcase</p>
         </header>
 
-        {/* About */}
-        <section id="about" className="mb-16">
-          <SectionTitle>About</SectionTitle>
-          <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
-            Mechanical engineer turned AI researcher. Currently at Stanford,
-            working at the intersection of computational physics and deep learning.
-            I build things that bridge the gap between simulation and intelligence.
-          </p>
-        </section>
-
         <Separator className="mb-16" />
 
-        {/* Experience */}
-        <section id="experience" className="mb-16">
-          <SectionTitle>Experience</SectionTitle>
-          <div className="grid gap-4">
-            {experiences.map((exp) => (
-              <a
-                key={exp.org}
-                href={experienceHref}
-                className="block no-underline text-inherit"
-              >
-                <Card className="cursor-pointer">
-                  <CardHeader>
-                    <CardTitle>{exp.role}</CardTitle>
-                    <CardDescription>@ {exp.org}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex gap-2">
-                      {exp.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="rounded-none text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="mb-16" />
-
-        {/* Projects */}
         <section id="projects" className="mb-16">
           <SectionTitle>Projects</SectionTitle>
           <div className="grid gap-4">
             {projects.map((project) => (
-              <a
-                key={project.title}
-                href={projectsHref}
-                className="block no-underline text-inherit"
-              >
-                <Card className="cursor-pointer">
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="rounded-none text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
+              <Card key={project.title}>
+                <CardHeader>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="rounded-none text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>
 
         <Separator className="mb-16" />
 
-        {/* Contact */}
         <section id="contact" className="mb-16">
           <SectionTitle>Contact</SectionTitle>
           <div className="flex flex-wrap gap-3">
-            <Button
-              variant="outline"
-              className="rounded-none"
-              render={<a href="mailto:nael@example.com" />}
-            >
+            <Button variant="outline" className="rounded-none" render={<a href="mailto:nael@example.com" />}>
               Email
             </Button>
             <Button
@@ -183,11 +107,9 @@ function App() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="border-t border-border pt-8 text-xs text-muted-foreground">
           <p>&copy; 2026 Nael Ghoundale</p>
         </footer>
-
       </div>
 
       <Nav />
@@ -203,4 +125,3 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default App
