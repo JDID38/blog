@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator"
 import { Nav } from "@/components/nav"
 import { experienceDetails } from "@/data/experience-detail"
 import { projectDetails } from "@/data/project-detail"
+import { ProjectDownloadLinks } from "@/components/project-download-links"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
@@ -99,18 +100,19 @@ function App() {
         <section id="projects" className="mb-16">
           <SectionTitle>Projects</SectionTitle>
           <div className="grid gap-4">
-            {projectDetails.map((project) => (
-              <a
-                key={project.slug}
-                href={`${import.meta.env.BASE_URL}projects/${project.slug}/`}
-                className="block no-underline text-inherit"
-              >
-                <Card className="cursor-pointer">
+            {projectDetails.map((project) => {
+              const posterPageHref = `${import.meta.env.BASE_URL}projects/${project.slug}/`
+              return (
+                <Card key={project.slug}>
                   <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
+                    <CardTitle>
+                      <a href={posterPageHref} className="text-inherit no-underline hover:underline">
+                        {project.title}
+                      </a>
+                    </CardTitle>
                     <CardDescription>{project.subtitle}</CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="space-y-4">
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <Badge key={tag} variant="outline" className="rounded-none text-xs">
@@ -118,10 +120,19 @@ function App() {
                         </Badge>
                       ))}
                     </div>
+                    <ProjectDownloadLinks paperHref={project.paperHref} posterHref={project.posterHref} />
+                    <p>
+                      <a
+                        href={posterPageHref}
+                        className="text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                      >
+                        View poster page →
+                      </a>
+                    </p>
                   </CardContent>
                 </Card>
-              </a>
-            ))}
+              )
+            })}
           </div>
         </section>
 

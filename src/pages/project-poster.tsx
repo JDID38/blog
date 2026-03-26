@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Nav } from "@/components/nav"
 import { ExperienceImageCard } from "@/components/experience-image-card"
+import { ProjectDownloadLinks } from "@/components/project-download-links"
 import { getProjectBySlug, projectDetails } from "@/data/project-detail"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
@@ -104,6 +105,12 @@ export default function ProjectPosterPage({ slug }: Props) {
                   </Badge>
                 ))}
               </div>
+              <ProjectDownloadLinks
+                paperHref={project.paperHref}
+                posterHref={project.posterHref}
+                className="mt-8 justify-center"
+                buttonSize="default"
+              />
             </header>
 
             {/* Abstract — full width band */}
