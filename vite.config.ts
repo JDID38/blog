@@ -2,6 +2,16 @@ import path from "path"
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
+import { PROJECT_POSTER_BUILD_SLUGS } from "./src/data/project-poster-build"
+
+function projectPosterInputs(): Record<string, string> {
+  return Object.fromEntries(
+    PROJECT_POSTER_BUILD_SLUGS.map((slug) => [
+      `project_${slug.replace(/-/g, "_")}`,
+      path.resolve(__dirname, "projects", slug, "index.html"),
+    ]),
+  )
+}
 
 export default defineConfig({
   base: "/blog/",
@@ -15,10 +25,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
-        projectFluid: path.resolve(__dirname, "projects/fluid-diffusion/index.html"),
-        projectGenerative: path.resolve(__dirname, "projects/generative-pipelines/index.html"),
-        projectMarl: path.resolve(__dirname, "projects/marl-social-dilemmas/index.html"),
-        projectSoccer: path.resolve(__dirname, "projects/soccer-financial-trends/index.html"),
+        ...projectPosterInputs(),
         experienceCirkles: path.resolve(__dirname, "experience/cirkles/index.html"),
         experienceThales: path.resolve(__dirname, "experience/thales/index.html"),
       },

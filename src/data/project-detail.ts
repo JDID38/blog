@@ -1,3 +1,5 @@
+/** New poster page: add `projects/<slug>/index.html`, then append slug to `project-poster-build.ts`. */
+
 export type ProjectGalleryItem = {
   id: string
   caption: string
@@ -36,6 +38,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2026",
     venue: "Stanford University",
     tags: ["DDPM", "CFD", "PyTorch", "3D U-Net"],
+    paperHref: "papers/fluid-diffusion-paper.pdf",
+    posterHref: "papers/fluid-diffusion-poster.pdf",
     abstract:
       "We want to reconstruct 3D flow fields from sparse 2D planar velocity data. We use a Denoising Diffusion Probabilistic Model (DDPM) to predict the missing flow information.",
     problem:
@@ -57,6 +61,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2026",
     venue: "Stanford University",
     tags: ["Generative AI", "PFGM++", "Medical Imaging", "PyTorch"],
+    paperHref: "papers/medical-image-synthesis-paper.pdf",
+    posterHref: "papers/medical-image-synthesis-poster.pdf",
     abstract:
       "This project synthesizes Computed Tomography (CT) images from Magnetic Resonance Imaging (MRI) data. The goal is to allow an 'MR-only' workflow to reduce patient radiation exposure and improve efficiency during pelvic radiotherapy planning.",
     problem:
@@ -78,6 +84,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2026",
     venue: "Stanford University",
     tags: ["RL", "MARL", "IPPO", "Python"],
+    paperHref: "papers/marl-social-dilemmas-paper.pdf",
+    posterHref: "papers/marl-social-dilemmas-poster.pdf",
     abstract:
       "Standard reinforcement learning agents struggle to cooperate in environments with limited resources, known as Sequential Social Dilemmas. We implemented an education approach to shift agent goals over time using a Social Value Orientation (SVO) reward transformation.",
     problem:
@@ -99,6 +107,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2026",
     venue: "Stanford University",
     tags: ["Machine Learning", "LSTM", "Neural Networks", "Data Science"],
+    paperHref: "papers/soccer-financial-trends-paper.pdf",
+    posterHref: "papers/soccer-financial-trends-poster.pdf",
     abstract:
       "Accurate predictions of soccer player market values and wages are critical for club management and transfer strategies. We built machine learning models to predict these financial metrics from player and team performance data.",
     problem:
@@ -120,6 +130,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Academic Project",
     tags: ["CFD", "STAR-CCM+", "CATIA V5", "Fluid Dynamics"],
+    paperHref: "papers/von-karman-cfd-paper.pdf",
+    posterHref: "papers/von-karman-cfd-poster.pdf",
     abstract:
       "This project explores computational fluid dynamics (CFD) by simulating and analyzing the famous Von Karman vortex street phenomenon using industry-standard engineering software.",
     problem:
@@ -141,6 +153,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Academic Project",
     tags: ["Mechanical Design", "Metrology", "Manufacturing", "CAD"],
+    paperHref: "papers/pump-body-design-paper.pdf",
+    posterHref: "papers/pump-body-design-poster.pdf",
     abstract:
       "This project focused on the complete mechanical design and manufacturing lifecycle of a pump body, bridging the gap between theoretical CAD and physical production.",
     problem:
@@ -162,6 +176,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Arts et Métiers (LIFSE)",
     tags: ["CATIA V5", "3D Printing", "Fluid Systems", "Sustainability"],
+    paperHref: "papers/centrifugal-compressor-paper.pdf",
+    posterHref: "papers/centrifugal-compressor-poster.pdf",
     abstract:
       "Driven by an interest in replacing fossil fuels, I conducted a project focused on hydrogen tanks. I designed, dimensioned, and 3D printed a fully functional prototype of a centrifugal compressor.",
     problem:
@@ -183,6 +199,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Arts et Métiers",
     tags: ["Mechanical Design", "Dassault Systèmes", "3D Experience", "CAD"],
+    paperHref: "papers/motor-gearbox-paper.pdf",
+    posterHref: "papers/motor-gearbox-poster.pdf",
     abstract:
       "During my time at engineering school, I designed a cutting-edge motor gearbox. This project challenged my engineering skills and creativity, giving me invaluable hands-on experience in the field.",
     problem:
@@ -204,6 +222,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2024",
     venue: "ENSAM Entrepreneurial Program",
     tags: ["AI", "Start-up", "App Development", "Sustainability"],
+    paperHref: "papers/rerock-startup-paper.pdf",
+    posterHref: "papers/rerock-startup-poster.pdf",
     abstract:
       "I co-initiated 'Rerock', an app that revolutionizes sustainable fashion by upcycling. We connect clients with local creators and use AI to generate custom design ideas based on user preferences.",
     problem:
@@ -225,6 +245,8 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Arts et Métiers",
     tags: ["CATIA", "Simulation", "Aerospace", "Mechanical Design"],
+    paperHref: "papers/aircraft-brakes-paper.pdf",
+    posterHref: "papers/aircraft-brakes-poster.pdf",
     abstract:
       "For a comprehensive mechanical engineering project, I designed, modeled, and simulated an aircraft brake system. This involved taking the mechanism from early conceptualization all the way to detailed 3D simulation.",
     problem:
