@@ -1,10 +1,10 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import "./index.css"
-import ProjectsPage from "@/pages/projects"
+import ProjectPosterPage from "@/pages/project-poster"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ProjectsPage />
+    <ProjectPosterPage slug="fluid-diffusion" />
   </StrictMode>,
 )

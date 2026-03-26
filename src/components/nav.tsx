@@ -22,7 +22,7 @@ export function Nav() {
   const hrefFor = (id: string) => {
     if (id === "about") return `${baseUrl}#about`
     if (id === "experience") return `${baseUrl}#experience`
-    if (id === "projects") return `${baseUrl}projects/`
+    if (id === "projects") return `${baseUrl}#projects`
     if (id === "contact") return `${baseUrl}#contact`
     return baseUrl
   }

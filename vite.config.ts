@@ -15,7 +15,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
-        projects: path.resolve(__dirname, "projects/index.html"),
+        projectFluid: path.resolve(__dirname, "projects/fluid-diffusion/index.html"),
+        projectGenerative: path.resolve(__dirname, "projects/generative-pipelines/index.html"),
+        projectMarl: path.resolve(__dirname, "projects/marl-social-dilemmas/index.html"),
+        projectSoccer: path.resolve(__dirname, "projects/soccer-financial-trends/index.html"),
         experienceCirkles: path.resolve(__dirname, "experience/cirkles/index.html"),
         experienceThales: path.resolve(__dirname, "experience/thales/index.html"),
       },

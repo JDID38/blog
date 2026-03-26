@@ -5,26 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Nav } from "@/components/nav"
 import { experienceDetails } from "@/data/experience-detail"
+import { projectDetails } from "@/data/project-detail"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
-const projects = [
-  {
-    title: "3D Fluid Flow Diffusion Models",
-    description:
-      "Score-based generative modelling for turbulent flow fields — coupling deep learning with computational fluid dynamics.",
-    tags: ["Diffusion", "CFD", "PyTorch"],
-  },
-  {
-    title: "Generative Pipelines",
-    description:
-      "End-to-end diffusion and autoregressive architectures for scientific data generation and simulation.",
-    tags: ["Generative AI", "Autoregressive", "Research"],
-  },
-]
-
 function App() {
-  const projectsHref = `${import.meta.env.BASE_URL}projects/`
 
   return (
     <div className="relative min-h-screen">
@@ -114,16 +99,16 @@ function App() {
         <section id="projects" className="mb-16">
           <SectionTitle>Projects</SectionTitle>
           <div className="grid gap-4">
-            {projects.map((project) => (
+            {projectDetails.map((project) => (
               <a
-                key={project.title}
-                href={projectsHref}
+                key={project.slug}
+                href={`${import.meta.env.BASE_URL}projects/${project.slug}/`}
                 className="block no-underline text-inherit"
               >
                 <Card className="cursor-pointer">
                   <CardHeader>
                     <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
+                    <CardDescription>{project.subtitle}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
