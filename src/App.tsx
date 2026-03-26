@@ -1,8 +1,11 @@
+import { lazy, Suspense } from "react"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Nav } from "@/components/nav"
+
+const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
 const experiences = [
   {
@@ -34,8 +37,30 @@ const projects = [
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <div className="mx-auto max-w-2xl px-6 py-24 pb-32">
+    <div className="relative min-h-screen">
+      {/* PixelBlast background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <Suspense fallback={null}>
+          <PixelBlast
+            variant="square"
+            pixelSize={4}
+            color="#c0bdb8"
+            patternScale={2}
+            patternDensity={1}
+            pixelSizeJitter={0}
+            enableRipples
+            rippleSpeed={0.4}
+            rippleThickness={0.12}
+            rippleIntensityScale={1.5}
+            liquid={false}
+            speed={0.5}
+            edgeFade={0.25}
+            transparent
+          />
+        </Suspense>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-2xl px-6 py-24 pb-32">
 
         {/* Header */}
         <header className="mb-20">
