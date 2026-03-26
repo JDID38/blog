@@ -23,28 +23,28 @@ const experiences = [
 export default function ExperiencePage() {
   return (
     <div className="relative min-h-screen">
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-20">
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.40]">
         <Suspense fallback={null}>
           <PixelBlast
             variant="square"
             pixelSize={4}
-            color="#e6e0d5"
+            color="#B7D5FF"
             patternScale={2}
             patternDensity={1}
             pixelSizeJitter={0}
             enableRipples
             rippleSpeed={0.4}
             rippleThickness={0.12}
-            rippleIntensityScale={1.2}
+            rippleIntensityScale={1.05}
             liquid={false}
             speed={0.5}
-            edgeFade={0.18}
+            edgeFade={0.22}
             transparent
           />
         </Suspense>
       </div>
 
-      <div className="pointer-events-none fixed inset-0 z-[5] bg-background/55" />
+      <div className="pointer-events-none fixed inset-0 z-[5] bg-background/25" />
 
       <div className="relative z-10 mx-auto max-w-2xl px-6 py-24 pb-32">
         <header className="mb-16">
