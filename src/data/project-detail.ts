@@ -26,13 +26,13 @@ export const projectDetails: ProjectDetail[] = [
     venue: "Stanford University",
     tags: ["DDPM", "CFD", "PyTorch", "3D U-Net"],
     abstract:
-      "We want to reconstruct 3D flow fields from sparse 2D planar velocity data[cite: 779]. We use a Denoising Diffusion Probabilistic Model (DDPM) to predict the missing flow information[cite: 780].",
+      "We want to reconstruct 3D flow fields from sparse 2D planar velocity data. We use a Denoising Diffusion Probabilistic Model (DDPM) to predict the missing flow information[cite: 779, 780].",
     problem:
-      "In fluid mechanics, getting full volumetric measurements is experimentally challenging and expensive[cite: 787]. Usually, techniques like PIV only offer precise data at specific planar cross-sections[cite: 788]. We need a way to infer 3D flow structure from these sparse planar measurements[cite: 790].",
+      "In fluid mechanics, getting full 3D measurements is very hard and expensive[cite: 786, 787]. Standard experimental techniques like PIV usually only give 2D cross-sections[cite: 788]. We need a computational way to infer the complete 3D turbulent flow structure from these limited 2D slices to save time and storage[cite: 793, 795, 796].",
     approach:
-      "We used Direct Numerical Simulation data from the Johns Hopkins Turbulence Database[cite: 782, 840]. We simulated incomplete observations by creating binary masks that randomly zero out a percentage of the cross-sectional slices[cite: 902]. Then, we trained a 3D U-Net denoising model to reverse the diffusion process and recover the original field[cite: 917, 926].",
+      "We used Direct Numerical Simulation (DNS) data of turbulent channel flow from the Johns Hopkins Turbulence Database[cite: 782, 840, 842]. We extracted 3D volumes and randomly masked 50% of the 2D slices to simulate missing experimental data[cite: 902, 931]. Then, we built a 3D U-Net as the denoising model for our DDPM[cite: 917]. The model learns to reverse the diffusion noise process and predicts the missing velocity fields conditioned on the available spatial slices[cite: 918, 926].",
     outcome:
-      "The DDPM outperformed both the 3D CNN and linear interpolation baselines[cite: 1010]. It successfully captured long-range spatial dependencies and global flow patterns without relying on hard-coded physics[cite: 1012, 1024].",
+      "The DDPM performed much better than a standard 3D CNN (U-Net) and linear interpolation baselines[cite: 783, 1010]. Because it learns from the statistical distribution of the turbulent flow, it successfully captured global flow patterns and long-range spatial dependencies without needing hard-coded Navier-Stokes equations[cite: 1011, 1012, 1024].",
     gallery: [
       { id: "fd1", caption: "Velocity field slice" },
       { id: "fd2", caption: "Ground truth vs prediction" },
@@ -47,13 +47,13 @@ export const projectDetails: ProjectDetail[] = [
     venue: "Stanford University",
     tags: ["Generative AI", "PFGM++", "Medical Imaging", "PyTorch"],
     abstract:
-      "This project focuses on synthesizing Computed Tomography (CT) images from Magnetic Resonance Imaging (MRI) data[cite: 274]. The goal is to facilitate an MR-only workflow to reduce patient radiation exposure during radiotherapy planning[cite: 274].",
+      "This project synthesizes Computed Tomography (CT) images from Magnetic Resonance Imaging (MRI) data[cite: 270, 274]. The goal is to allow an 'MR-only' workflow to reduce patient radiation exposure and improve efficiency during pelvic radiotherapy planning[cite: 274].",
     problem:
-      "CT scans expose patients to severe radiation, and using both CT and MRI increases operation costs[cite: 293]. However, generating synthetic CTs is hard because MRI and CT encode different physical properties[cite: 297].",
+      "CT scans expose patients to severe radiation, and using both CT and MRI devices increases hospital costs and operation time[cite: 293]. However, predicting CT from MRI is a challenging translation problem because they measure different physical properties: MRI shows soft tissue contrast very well, while CT captures electron density like bones and air[cite: 297].",
     approach:
-      "We built a Poisson flow generative model (PFGM++) based on a U-Net architecture that incorporates residual SwinFIR Transformer blocks[cite: 279]. The network processes a noisy CT slice and a conditioning MR slice to output a synthetic CT scan[cite: 383].",
+      "We used the SynthRAD2023 dataset with 180 patient cases[cite: 317, 318]. We built a physics-inspired generative model called PFGM++[cite: 299, 302]. It uses a U-Net architecture combined with SwinFIR Transformer blocks[cite: 279]. The network takes a noisy CT slice and a conditioning MR slice, and uses Poisson flow equations to transport the noisy sample back to a clean synthetic CT[cite: 381, 382, 383, 384].",
     outcome:
-      "Our SwinFIR-PFGM model achieved a Peak Signal-to-Noise Ratio (PSNR) of 20.68 and a Mean Absolute Error of 0.11[cite: 280]. It surpassed the 2D U-Net baseline, creating sharper soft tissues that align better with the ground truth[cite: 280, 412].",
+      "Our SwinFIR-PFGM model reached a Peak Signal-to-Noise Ratio (PSNR) of 20.68 and a Mean Absolute Error of 0.11[cite: 280]. It easily surpassed our 2D U-Net baseline[cite: 280]. The generated soft tissues and bones were much sharper, respected the anatomical boundaries, and matched the ground truth intensity values much better[cite: 411, 412, 424].",
     gallery: [
       { id: "gp1", caption: "MRI Input" },
       { id: "gp2", caption: "Synthetic CT Output" },
@@ -68,13 +68,13 @@ export const projectDetails: ProjectDetail[] = [
     venue: "Stanford University",
     tags: ["RL", "MARL", "IPPO", "Python"],
     abstract:
-      "Standard reinforcement learning agents frequently struggle to achieve cooperation in complex environments characterized by competition and resource scarcity[cite: 4]. We implement a dynamic education approach during training that shifts an agent's intrinsic goals over time using a Social Value Orientation (SVO) reward transformation[cite: 7].",
+      "Standard reinforcement learning agents struggle to cooperate in environments with limited resources, known as Sequential Social Dilemmas[cite: 4, 16]. We implemented an education approach to shift agent goals over time using a Social Value Orientation (SVO) reward transformation[cite: 7].",
     problem:
-      "If agents simply optimize for their raw, immediate environmental rewards, they almost inevitably fall into resources depletion[cite: 18]. Standard algorithms like Q-learning or standard Policy Gradients often converge to aggressive, mutually destructive policies[cite: 30].",
+      "When artificial agents only optimize for their own immediate rewards, they act selfishly and quickly deplete all the resources in the environment[cite: 18]. This leads to suboptimal outcomes and starvation for the whole population[cite: 19]. Standard algorithms like Q-learning or Policy Gradients fail to learn sustainable cooperation in these scenarios[cite: 30].",
     approach:
-      "We trained Independent Proximal Policy Optimization (IPPO) agents within the DeepMind Melting Pot suite[cite: 8]. We mathematically modify the rewards to reflect different social ideologies before they are passed to the learning algorithm[cite: 44, 45]. We also tested dynamic curriculum schedules[cite: 57, 59].",
+      "We trained Independent Proximal Policy Optimization (IPPO) agents equipped with LSTM memory networks inside the DeepMind Melting Pot simulator[cite: 8, 94, 100]. We intercepted the environment rewards and mathematically transformed them to mix personal success with the success of peer agents[cite: 44, 48]. We tested both static ideologies (like 45° for balanced cooperation) and dynamic curriculum schedules (like linear or exponential changes)[cite: 53, 59].",
     outcome:
-      "Our findings demonstrate that a balanced cooperative ideology yields the most sustainable harvesting and highest collective reward[cite: 9]. However, dynamically shifting this ideology during training introduces optimization instability that ultimately underperforms when compared to a static cooperative baseline[cite: 9].",
+      "We found that a static 45° cooperative ideology worked best, yielding the most sustainable harvesting, highest total reward, and lowest inequality[cite: 112, 178]. Surprisingly, the dynamic curriculum schedules failed[cite: 219]. Shifting the ideology during training confused the IPPO agents' advantage estimations and caused severe optimization instability[cite: 221, 222].",
     gallery: [
       { id: "rl1", caption: "Melting Pot simulation" },
       { id: "rl2", caption: "Reward mean during training" },
@@ -89,13 +89,13 @@ export const projectDetails: ProjectDetail[] = [
     venue: "Stanford University",
     tags: ["Machine Learning", "LSTM", "Neural Networks", "Data Science"],
     abstract:
-      "Accurate predictions of these values can influence major decisions in club management[cite: 494]. We predict player market-value and wage from player performance, and player and club market value increases after transfer[cite: 500, 503].",
+      "Accurate predictions of soccer player market values and wages are critical for club management and transfer strategies[cite: 493, 494]. We built machine learning models to predict these financial metrics from player and team performance data[cite: 487, 500].",
     problem:
-      "Predicting player market values remains a complex challenge due to the multitude of factors that contribute to a player's worth[cite: 495].",
+      "Predicting player market values is a very complex challenge because there is a massive amount of data and a multitude of physical and performance factors that contribute to a player's worth[cite: 495]. Standard models struggle to capture both the static physical traits and the dynamic temporal performance trends over multiple games[cite: 633, 634].",
     approach:
-      "We use a jointly-trained, multi-task neural network (NN), called FIFANet, to output the predicted wage and predicted market value[cite: 502]. We also use a novel meta-model called ClubNet, which aggregates LSTM, Random Forest, and Gradient Boosting Regressor[cite: 506].",
+      "We tackled two main tasks. First, we built FIFANet, a multi-task neural network with shared layers, to jointly predict player wage and market value using FIFA dataset attributes[cite: 502, 542, 545]. Second, we built ClubNet, a meta-model that predicts market value increases after a transfer[cite: 506]. ClubNet combines an LSTM to process sequential game data with Random Forest and Gradient Boosting Regressors to process static physical features[cite: 506, 551, 552, 553].",
     outcome:
-      "FIFANet consistently outperformed all baseline models in predicting both wage and market value[cite: 575]. ClubNet outperforms the simpler baseline models for predicting player and club market value increases, achieving the lowest MSE and MAE[cite: 632].",
+      "FIFANet consistently outperformed all baseline models like Ridge Regression and Random Forest, achieving the highest R-squared scores and lowest errors[cite: 575]. ClubNet also beat the baselines for predicting value increases, proving that aggregating temporal LSTM data with static regression models creates a much stronger and more accurate predictive tool[cite: 632, 635].",
     gallery: [
       { id: "soc1", caption: "FIFANet training loss" },
       { id: "soc2", caption: "ClubNet performance" },
