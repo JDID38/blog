@@ -6,6 +6,7 @@ import { Nav } from "@/components/nav"
 import { ExperienceImageCard } from "@/components/experience-image-card"
 import { experienceDetails, getExperienceBySlug } from "@/data/experience-detail"
 import { resolveProjectAssetHref } from "@/data/project-detail"
+import { isGalleryImageFileAvailable } from "@/lib/gallery-image-available"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
@@ -29,6 +30,10 @@ export default function ExperienceSinglePage({ slug }: Props) {
       </div>
     )
   }
+
+  const galleryItemsOnDisk = exp.gallery.filter(
+    (item) => item.imageHref && isGalleryImageFileAvailable(item.imageHref),
+  )
 
   return (
     <div className="relative min-h-screen">
@@ -104,20 +109,22 @@ export default function ExperienceSinglePage({ slug }: Props) {
             {exp.description}
           </p>
 
-          <div>
-            <h3 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/45">
-              <span className="text-foreground/25">{">"}</span> Gallery
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {exp.gallery.map((item) => (
-                <ExperienceImageCard
-                  key={item.id}
-                  caption={item.caption}
-                  src={item.imageHref ? resolveProjectAssetHref(item.imageHref) : undefined}
-                />
-              ))}
+          {galleryItemsOnDisk.length > 0 ? (
+            <div>
+              <h3 className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/45">
+                <span className="text-foreground/25">{">"}</span> Gallery
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {galleryItemsOnDisk.map((item) => (
+                  <ExperienceImageCard
+                    key={item.id}
+                    caption={item.caption}
+                    src={resolveProjectAssetHref(item.imageHref!)}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
         </article>
 
         <Separator className="my-16" />

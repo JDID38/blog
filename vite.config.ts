@@ -3,6 +3,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import { PROJECT_POSTER_BUILD_SLUGS } from "./src/data/project-poster-build"
+import { imageAvailabilityPlugin } from "./vite-plugin-image-availability"
 import { paperAvailabilityPlugin } from "./vite-plugin-paper-availability"
 
 function projectPosterInputs(): Record<string, string> {
@@ -16,7 +17,7 @@ function projectPosterInputs(): Record<string, string> {
 
 export default defineConfig({
   base: "/blog/",
-  plugins: [react(), tailwindcss(), paperAvailabilityPlugin()],
+  plugins: [react(), tailwindcss(), paperAvailabilityPlugin(), imageAvailabilityPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

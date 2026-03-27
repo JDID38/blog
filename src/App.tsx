@@ -48,7 +48,7 @@ function App() {
             <span className="cursor-blink ml-1 text-foreground/30">█</span>
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Mechanical Engineering &middot; Artificial Intelligence &middot; Stanford
+            Mechanical Engineering &middot; Artificial Intelligence &middot; Stanford  &middot; Arts et Métiers ParisTech
           </p>
         </header>
 
@@ -56,9 +56,9 @@ function App() {
         <section id="about" className="mb-16">
           <SectionTitle>About</SectionTitle>
           <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
-            Mechanical engineer turned AI researcher. Currently at Stanford,
-            working at the intersection of computational physics and deep learning.
-            I build things that bridge the gap between simulation and intelligence.
+            Mechanical x AI. Currently at Stanford,
+            Love math, physics, and coding.
+            "Eternity is just a moment long enough to tell a joke" - Herman Hesse
           </p>
         </section>
 

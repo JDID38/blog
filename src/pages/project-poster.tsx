@@ -6,6 +6,7 @@ import { Nav } from "@/components/nav"
 import { ExperienceImageCard } from "@/components/experience-image-card"
 import { ProjectDownloadLinks } from "@/components/project-download-links"
 import { getProjectBySlug, projectDetails, resolveProjectAssetHref } from "@/data/project-detail"
+import { isGalleryImageFileAvailable } from "@/lib/gallery-image-available"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
@@ -18,6 +19,12 @@ export default function ProjectPosterPage({ slug }: Props) {
   const baseUrl = import.meta.env.BASE_URL
   const homeUrl = `${baseUrl}`
   const other = projectDetails.find((p) => p.slug !== slug)
+
+  const galleryItemsOnDisk = project
+    ? project.gallery.filter(
+        (item) => item.imageHref && isGalleryImageFileAvailable(item.imageHref),
+      )
+    : []
 
   if (!project) {
     return (
@@ -156,21 +163,23 @@ export default function ProjectPosterPage({ slug }: Props) {
               </CardContent>
             </Card>
 
-            {/* Figures row — poster style */}
-            <section>
-              <h2 className="mb-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.35em] text-foreground/45">
-                Figures
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-3">
-                {project.gallery.map((item) => (
-                  <ExperienceImageCard
-                    key={item.id}
-                    caption={item.caption}
-                    src={item.imageHref ? resolveProjectAssetHref(item.imageHref) : undefined}
-                  />
-                ))}
-              </div>
-            </section>
+            {/* Figures — only slots with a real file under public/images/ at build time */}
+            {galleryItemsOnDisk.length > 0 ? (
+              <section>
+                <h2 className="mb-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.35em] text-foreground/45">
+                  Figures
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {galleryItemsOnDisk.map((item) => (
+                    <ExperienceImageCard
+                      key={item.id}
+                      caption={item.caption}
+                      src={resolveProjectAssetHref(item.imageHref!)}
+                    />
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             {/* Footer strip on poster */}
             <div className="mt-12 border-t-2 border-border pt-6 text-center">
