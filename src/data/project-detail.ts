@@ -130,8 +130,6 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Academic Project",
     tags: ["CFD", "STAR-CCM+", "CATIA V5", "Fluid Dynamics"],
-    paperHref: "papers/von-karman-cfd-paper.pdf",
-    posterHref: "papers/von-karman-cfd-poster.pdf",
     abstract:
       "This project explores computational fluid dynamics (CFD) by simulating and analyzing the famous Von Karman vortex street phenomenon using industry-standard engineering software.",
     problem:
@@ -153,8 +151,6 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Academic Project",
     tags: ["Mechanical Design", "Metrology", "Manufacturing", "CAD"],
-    paperHref: "papers/pump-body-design-paper.pdf",
-    posterHref: "papers/pump-body-design-poster.pdf",
     abstract:
       "This project focused on the complete mechanical design and manufacturing lifecycle of a pump body, bridging the gap between theoretical CAD and physical production.",
     problem:
@@ -176,8 +172,6 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Arts et Métiers (LIFSE)",
     tags: ["CATIA V5", "3D Printing", "Fluid Systems", "Sustainability"],
-    paperHref: "papers/centrifugal-compressor-paper.pdf",
-    posterHref: "papers/centrifugal-compressor-poster.pdf",
     abstract:
       "Driven by an interest in replacing fossil fuels, I conducted a project focused on hydrogen tanks. I designed, dimensioned, and 3D printed a fully functional prototype of a centrifugal compressor.",
     problem:
@@ -199,8 +193,6 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Arts et Métiers",
     tags: ["Mechanical Design", "Dassault Systèmes", "3D Experience", "CAD"],
-    paperHref: "papers/motor-gearbox-paper.pdf",
-    posterHref: "papers/motor-gearbox-poster.pdf",
     abstract:
       "During my time at engineering school, I designed a cutting-edge motor gearbox. This project challenged my engineering skills and creativity, giving me invaluable hands-on experience in the field.",
     problem:
@@ -222,8 +214,6 @@ export const projectDetails: ProjectDetail[] = [
     year: "2024",
     venue: "ENSAM Entrepreneurial Program",
     tags: ["AI", "Start-up", "App Development", "Sustainability"],
-    paperHref: "papers/rerock-startup-paper.pdf",
-    posterHref: "papers/rerock-startup-poster.pdf",
     abstract:
       "I co-initiated 'Rerock', an app that revolutionizes sustainable fashion by upcycling. We connect clients with local creators and use AI to generate custom design ideas based on user preferences.",
     problem:
@@ -245,8 +235,6 @@ export const projectDetails: ProjectDetail[] = [
     year: "2023",
     venue: "Arts et Métiers",
     tags: ["CATIA", "Simulation", "Aerospace", "Mechanical Design"],
-    paperHref: "papers/aircraft-brakes-paper.pdf",
-    posterHref: "papers/aircraft-brakes-poster.pdf",
     abstract:
       "For a comprehensive mechanical engineering project, I designed, modeled, and simulated an aircraft brake system. This involved taking the mechanism from early conceptualization all the way to detailed 3D simulation.",
     problem:
