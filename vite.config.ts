@@ -3,6 +3,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import { PROJECT_POSTER_BUILD_SLUGS } from "./src/data/project-poster-build"
+import { paperAvailabilityPlugin } from "./vite-plugin-paper-availability"
 
 function projectPosterInputs(): Record<string, string> {
   return Object.fromEntries(
@@ -15,7 +16,7 @@ function projectPosterInputs(): Record<string, string> {
 
 export default defineConfig({
   base: "/blog/",
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), paperAvailabilityPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

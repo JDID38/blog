@@ -3,6 +3,12 @@
 export type ProjectGalleryItem = {
   id: string
   caption: string
+  /**
+   * Image under `public/images/projects/<this-project-slug>/` (no leading slash), e.g.
+   * `images/projects/fluid-diffusion/1.png`. One folder per project; use `1.png`, `2.png`, … to match figure order.
+   * Omit to show the dashed placeholder until you add the file.
+   */
+  imageHref?: string
 }
 
 export type ProjectDetail = {
@@ -22,7 +28,7 @@ export type ProjectDetail = {
   gallery: ProjectGalleryItem[]
 }
 
-/** Resolve a project asset path for anchors. Relative paths use Vite `base` (e.g. /blog/). */
+/** Resolve a `public/` asset URL (PDFs, images). Relative paths use Vite `base` (e.g. /blog/). */
 export function resolveProjectAssetHref(href: string): string {
   if (/^https?:\/\//i.test(href.trim())) return href.trim()
   const base = import.meta.env.BASE_URL.replace(/\/?$/, "/")
@@ -49,9 +55,9 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "The DDPM performed much better than a standard 3D CNN (U-Net) and linear interpolation baselines. Because it learns from the statistical distribution of the turbulent flow, it successfully captured global flow patterns and long-range spatial dependencies without needing hard-coded Navier-Stokes equations.",
     gallery: [
-      { id: "fd1", caption: "Velocity field slice" },
-      { id: "fd2", caption: "Ground truth vs prediction" },
-      { id: "fd3", caption: "Error distribution" },
+      { id: "fd1", caption: "Velocity field slice", imageHref: "images/projects/fluid-diffusion/1.png" },
+      { id: "fd2", caption: "Ground truth vs prediction", imageHref: "images/projects/fluid-diffusion/2.png" },
+      { id: "fd3", caption: "Error distribution", imageHref: "images/projects/fluid-diffusion/3.png" },
     ],
   },
   {
@@ -72,8 +78,8 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "Our SwinFIR-PFGM model reached a Peak Signal-to-Noise Ratio (PSNR) of 20.68 and a Mean Absolute Error of 0.11. It easily surpassed our 2D U-Net baseline. The generated soft tissues and bones were much sharper, respected the anatomical boundaries, and matched the ground truth intensity values much better.",
     gallery: [
-      { id: "gp1", caption: "MRI Input" },
-      { id: "gp2", caption: "Synthetic CT Output" },
+      { id: "gp1", caption: "MRI Input", imageHref: "images/projects/medical-image-synthesis/1.png" },
+      { id: "gp2", caption: "Synthetic CT Output", imageHref: "images/projects/medical-image-synthesis/2.png" },
       { id: "gp3", caption: "Ground Truth CT" },
     ],
   },
@@ -95,9 +101,9 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "We found that a static 45° cooperative ideology worked best, yielding the most sustainable harvesting, highest total reward, and lowest inequality. Surprisingly, the dynamic curriculum schedules failed. Shifting the ideology during training confused the IPPO agents' advantage estimations and caused severe optimization instability.",
     gallery: [
-      { id: "rl1", caption: "Melting Pot simulation" },
-      { id: "rl2", caption: "Reward mean during training" },
-      { id: "rl3", caption: "Cumulative total reward" },
+      { id: "rl1", caption: "Melting Pot simulation", imageHref: "images/projects/marl-social-dilemmas/1.png" },
+      { id: "rl2", caption: "Reward mean during training", imageHref: "images/projects/marl-social-dilemmas/2.png" },
+      { id: "rl3", caption: "Cumulative total reward", imageHref: "images/projects/marl-social-dilemmas/3.png" },
     ],
   },
   {
@@ -118,30 +124,30 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "FIFANet consistently outperformed all baseline models like Ridge Regression and Random Forest, achieving the highest R-squared scores and lowest errors. ClubNet also beat the baselines for predicting value increases, proving that aggregating temporal LSTM data with static regression models creates a much stronger and more accurate predictive tool.",
     gallery: [
-      { id: "soc1", caption: "FIFANet training loss" },
-      { id: "soc2", caption: "ClubNet performance" },
-      { id: "soc3", caption: "Feature correlation matrix" },
+      { id: "soc1", caption: "FIFANet training loss", imageHref: "images/projects/soccer-financial-trends/1.png" },
+      { id: "soc2", caption: "ClubNet performance", imageHref: "images/projects/soccer-financial-trends/2.png" },
+      { id: "soc3", caption: "Feature correlation matrix", imageHref: "images/projects/soccer-financial-trends/3.png" },
     ],
   },
   {
     slug: "von-karman-cfd",
-    title: "Von Karman Vortex Simulation",
-    subtitle: "CFD analysis of fluid flow dynamics",
+    title: "Preventing the effects of wind on bridges",
+    subtitle: "TIPE research project — deck shapes, Von Kármán wake, and the Tacoma Narrows lesson",
     year: "2023",
-    venue: "Academic Project",
-    tags: ["CFD", "STAR-CCM+", "CATIA V5", "Fluid Dynamics"],
+    venue: "Research project (TIPE)",
+    tags: ["Python", "SolidWorks", "Fluid mechanics", "Experiment"],
     abstract:
-      "This project explores computational fluid dynamics (CFD) by simulating and analyzing the famous Von Karman vortex street phenomenon using industry-standard engineering software.",
+      "Inspired by footage of the 1940 Tacoma Narrows Bridge collapse in Washington, USA, I studied how wind interacts with bridge decks and how deck shape responds to an air stream. The work focused on Von Kármán-induced vortices in the wake and on building a working physical model that reproduces deck oscillations driven by that shedding.",
     problem:
-      "Understanding how fluids behave when they flow past blunt obstacles is crucial in mechanical engineering to prevent structural vibrations and damage. I needed to properly set up a digital environment to observe and measure this specific turbulence pattern.",
+      "Wind can excite large motions in bridge decks; the Tacoma disaster is often explained too simply. I wanted to understand how deck geometry couples to airflow and to test whether Von Kármán vortex shedding alone could explain a failure like Tacoma’s—a common misconception in popular and even some technical accounts.",
     approach:
-      "First, I used CATIA V5 to design the geometry of the physical obstacle and the surrounding fluid domain. Then, I imported this model into STAR-CCM+ to run the actual CFD simulation. I had to carefully configure the mesh, boundary conditions, and turbulence models to capture the physics accurately.",
+      "I combined fluid-mechanics reading with design in SolidWorks and a fully functional experimental model of a deck in a controlled airflow, reproducing wake oscillations linked to Von Kármán-type shedding. I recorded and analyzed results with NumPy and plotted the data to compare frequencies and amplitudes to theoretical expectations.",
     outcome:
-      "The simulation successfully reproduced the alternating vortex street. This project gave me hands-on experience with the complete workflow of taking a CAD design and running a full computational fluid dynamics analysis on it.",
+      "The experiments and NumPy-based analysis showed that while Von Kármán vortices clearly drive periodic forcing on a bluff deck, they are not, by themselves, a sufficient explanation for the Tacoma Narrows collapse—helping clarify a widespread oversimplification and grounding the TIPE in careful experiment and data.",
     gallery: [
-      { id: "vk1", caption: "CATIA V5 Geometry" },
-      { id: "vk2", caption: "Mesh generation" },
-      { id: "vk3", caption: "Velocity field simulation" },
+      { id: "vk1", caption: "SolidWorks deck / apparatus design", imageHref: "images/projects/von-karman-cfd/1.png" },
+      { id: "vk2", caption: "Physical model in airflow", imageHref: "images/projects/von-karman-cfd/2.png" },
+      { id: "vk3", caption: "NumPy analysis & graphs" },
     ],
   },
   {
@@ -160,8 +166,8 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "I successfully learned the basic skills needed to manufacture a part using metrology. Getting to grips with the real issues involved in industrializing a part gave me practical mechanical engineering skills that I can apply directly to my future professional projects.",
     gallery: [
-      { id: "pb1", caption: "CAD Model" },
-      { id: "pb2", caption: "Metrology measurements" },
+      { id: "pb1", caption: "CAD Model", imageHref: "images/projects/pump-body-design/1.png" },
+      { id: "pb2", caption: "Metrology measurements", imageHref: "images/projects/pump-body-design/2.png" },
       { id: "pb3", caption: "Manufacturing plan" },
     ],
   },
@@ -181,9 +187,9 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "I successfully delivered and tested a fully functional centrifugal compressor prototype in the lab. This hands-on project deepened my understanding of fluid systems and strongly reinforced my belief that hydrogen has a bright future as a fuel substitute.",
     gallery: [
-      { id: "cc1", caption: "Compressor CAD design" },
-      { id: "cc2", caption: "3D printing process" },
-      { id: "cc3", caption: "Laboratory testing" },
+      { id: "cc1", caption: "Compressor CAD design", imageHref: "images/projects/centrifugal-compressor/1.png" },
+      { id: "cc2", caption: "3D printing process", imageHref: "images/projects/centrifugal-compressor/2.png" },
+      { id: "cc3", caption: "Laboratory testing", imageHref: "images/projects/centrifugal-compressor/3.png" },
     ],
   },
   {
@@ -202,8 +208,8 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "The successful completion of the gearbox showcased my dedication to precise 3D modeling and mechanical design. It affirmed my passion for mechanical engineering and provided a strong foundation for future innovations.",
     gallery: [
-      { id: "mg1", caption: "Gearbox assembly" },
-      { id: "mg2", caption: "3D Experience platform" },
+      { id: "mg1", caption: "Gearbox assembly", imageHref: "images/projects/motor-gearbox/1.png" },
+      { id: "mg2", caption: "3D Experience platform", imageHref: "images/projects/motor-gearbox/2.png" },
       { id: "mg3", caption: "Component detailing" },
     ],
   },
@@ -223,8 +229,8 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "Our AI innovation successfully streamlined the creative process for both clients and creators. By making upcycling easier and more accessible, we helped reduce costs and amplified our positive environmental impact in the fashion industry.",
     gallery: [
-      { id: "rr1", caption: "App interface" },
-      { id: "rr2", caption: "AI design generation" },
+      { id: "rr1", caption: "App interface", imageHref: "images/projects/rerock-startup/1.png" },
+      { id: "rr2", caption: "AI design generation", imageHref: "images/projects/rerock-startup/2.png" },
       { id: "rr3", caption: "Upcycled garments" },
     ],
   },
@@ -244,9 +250,9 @@ export const projectDetails: ProjectDetail[] = [
     outcome:
       "I delivered a precise 3D model and successful simulation of the aircraft brake system. This project proved my ability to tackle complex aerospace components and showcased my proficiency in both mechanical design and engineering analysis.",
     gallery: [
-      { id: "ab1", caption: "Brake system concept" },
-      { id: "ab2", caption: "Detailed CATIA modeling" },
-      { id: "ab3", caption: "Stress simulation" },
+      { id: "ab1", caption: "Brake system concept", imageHref: "images/projects/aircraft-brakes/1.png" },
+      { id: "ab2", caption: "Detailed CATIA modeling", imageHref: "images/projects/aircraft-brakes/2.png" },
+      { id: "ab3", caption: "Stress simulation", imageHref: "images/projects/aircraft-brakes/3.png" },
     ],
   }
 ]

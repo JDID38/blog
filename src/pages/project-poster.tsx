@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Nav } from "@/components/nav"
 import { ExperienceImageCard } from "@/components/experience-image-card"
 import { ProjectDownloadLinks } from "@/components/project-download-links"
-import { getProjectBySlug, projectDetails } from "@/data/project-detail"
+import { getProjectBySlug, projectDetails, resolveProjectAssetHref } from "@/data/project-detail"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
@@ -163,7 +163,11 @@ export default function ProjectPosterPage({ slug }: Props) {
               </h2>
               <div className="grid gap-4 sm:grid-cols-3">
                 {project.gallery.map((item) => (
-                  <ExperienceImageCard key={item.id} caption={item.caption} />
+                  <ExperienceImageCard
+                    key={item.id}
+                    caption={item.caption}
+                    src={item.imageHref ? resolveProjectAssetHref(item.imageHref) : undefined}
+                  />
                 ))}
               </div>
             </section>

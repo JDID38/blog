@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Nav } from "@/components/nav"
 import { ExperienceImageCard } from "@/components/experience-image-card"
 import { experienceDetails, getExperienceBySlug } from "@/data/experience-detail"
+import { resolveProjectAssetHref } from "@/data/project-detail"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
@@ -109,7 +110,11 @@ export default function ExperienceSinglePage({ slug }: Props) {
             </h3>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {exp.gallery.map((item) => (
-                <ExperienceImageCard key={item.id} caption={item.caption} />
+                <ExperienceImageCard
+                  key={item.id}
+                  caption={item.caption}
+                  src={item.imageHref ? resolveProjectAssetHref(item.imageHref) : undefined}
+                />
               ))}
             </div>
           </div>

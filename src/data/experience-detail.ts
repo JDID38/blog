@@ -1,6 +1,11 @@
 export type ExperienceGalleryItem = {
   id: string
   caption: string
+  /**
+   * Image under `public/`, e.g. `images/experience/cirkles/c1.webp`.
+   * Omit for placeholder.
+   */
+  imageHref?: string
 }
 
 export type ExperienceDetail = {

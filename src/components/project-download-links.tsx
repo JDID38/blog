@@ -1,6 +1,15 @@
 import { Button } from "@/components/ui/button"
 import { resolveProjectAssetHref } from "@/data/project-detail"
 import { cn } from "@/lib/utils"
+import { availablePaperFilenames } from "virtual:paper-availability"
+
+/** Show link only if the filename exists as a real file in `public/papers/` at build time. */
+function hrefPointsToAvailableAsset(href: string): boolean {
+  const t = href.trim()
+  if (/^https?:\/\//i.test(t)) return false
+  const base = t.split("/").pop() ?? ""
+  return base.length > 0 && availablePaperFilenames.has(base)
+}
 
 function assetAnchorProps(href: string) {
   const resolved = resolveProjectAssetHref(href)
@@ -24,25 +33,27 @@ export function ProjectDownloadLinks({
   className,
   buttonSize = "sm",
 }: Props) {
-  if (!paperHref && !posterHref) return null
+  const paper = paperHref && hrefPointsToAvailableAsset(paperHref) ? paperHref : undefined
+  const poster = posterHref && hrefPointsToAvailableAsset(posterHref) ? posterHref : undefined
+  if (!paper && !poster) return null
   return (
     <div className={cn("flex flex-wrap gap-2", className)}>
-      {paperHref ? (
+      {paper ? (
         <Button
           variant="outline"
           size={buttonSize}
           className="rounded-none"
-          render={<a {...assetAnchorProps(paperHref)} />}
+          render={<a {...assetAnchorProps(paper)} />}
         >
           Paper (PDF)
         </Button>
       ) : null}
-      {posterHref ? (
+      {poster ? (
         <Button
           variant="outline"
           size={buttonSize}
           className="rounded-none"
-          render={<a {...assetAnchorProps(posterHref)} />}
+          render={<a {...assetAnchorProps(poster)} />}
         >
           Poster (PDF)
         </Button>
