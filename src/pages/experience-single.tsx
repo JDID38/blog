@@ -78,10 +78,7 @@ export default function ExperienceSinglePage({ slug }: Props) {
               </>
             ) : null}
           </p>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">
-            Nael Ghoundale
-            <span className="cursor-blink ml-1 text-foreground/30">█</span>
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Nael Ghoundale</h1>
         </header>
 
         <article>

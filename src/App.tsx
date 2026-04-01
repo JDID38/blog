@@ -44,7 +44,7 @@ function App() {
 
         {/* Header */}
         <header className="mb-20">
-          <h1 className="flex flex-wrap items-baseline gap-x-1 text-3xl font-bold tracking-tight text-foreground">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
             <DecryptedText
               text="Nael Ghoundale"
               animateOn="view"
@@ -56,7 +56,6 @@ function App() {
               className="text-foreground"
               encryptedClassName="text-foreground/40"
             />
-            <span className="cursor-blink text-foreground/30">█</span>
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Mechanical Engineering &middot; Artificial Intelligence &middot; Stanford  &middot; Arts et Métiers ParisTech
