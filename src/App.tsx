@@ -7,6 +7,7 @@ import { Nav } from "@/components/nav"
 import { experienceDetails } from "@/data/experience-detail"
 import { projectDetails } from "@/data/project-detail"
 import { ProjectDownloadLinks } from "@/components/project-download-links"
+import DecryptedText from "@/components/decrypted-text"
 
 const PixelBlast = lazy(() => import("@/components/pixel-blast"))
 
@@ -43,9 +44,19 @@ function App() {
 
         {/* Header */}
         <header className="mb-20">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">
-            Nael Ghoundale
-            <span className="cursor-blink ml-1 text-foreground/30">█</span>
+          <h1 className="flex flex-wrap items-baseline gap-x-1 text-3xl font-bold tracking-tight text-foreground">
+            <DecryptedText
+              text="Nael Ghoundale"
+              animateOn="view"
+              sequential
+              revealDirection="start"
+              speed={42}
+              maxIterations={14}
+              parentClassName="inline"
+              className="text-foreground"
+              encryptedClassName="text-foreground/40"
+            />
+            <span className="cursor-blink text-foreground/30">█</span>
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Mechanical Engineering &middot; Artificial Intelligence &middot; Stanford  &middot; Arts et Métiers ParisTech
@@ -57,7 +68,7 @@ function App() {
           <SectionTitle>About</SectionTitle>
           <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
             Mechanical x AI. Currently at Stanford,
-            Love math, physics, and coding.
+            Love maths, physics, and coding.
             "Eternity is just a moment long enough to tell a joke" - Herman Hesse
           </p>
         </section>
@@ -145,21 +156,21 @@ function App() {
             <Button
               variant="outline"
               className="rounded-none"
-              render={<a href="mailto:nael@example.com" />}
+              render={<a href="mailto:naelgh22@stanford.edu" />}
             >
               Email
             </Button>
             <Button
               variant="outline"
               className="rounded-none"
-              render={<a href="https://github.com/" target="_blank" rel="noopener noreferrer" />}
+              render={<a href="https://github.com/JDID38" target="_blank" rel="noopener noreferrer" />}
             >
               GitHub
             </Button>
             <Button
               variant="outline"
               className="rounded-none"
-              render={<a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" />}
+              render={<a href="https://www.linkedin.com/in/nael-ghoundale-412312261/" target="_blank" rel="noopener noreferrer" />}
             >
               LinkedIn
             </Button>
